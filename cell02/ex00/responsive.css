@@ -1,0 +1,50 @@
+html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.responsive-table {
+    width: 100%;
+    height: 100vh;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.responsive-table td {
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.cell1 {
+    background-color: pink;
+}
+
+.cell2 {
+    background-color: violet;
+}
+
+@media (max-width: 600px) {
+    .responsive-table,
+    .responsive-table tbody,
+    .responsive-table tr,
+    .responsive-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .responsive-table td {
+        min-height: 50vh;
+        height: auto;
+    }
+}
+
