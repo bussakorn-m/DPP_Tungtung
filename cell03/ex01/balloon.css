@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+#balloon {
+    width: 100px;
+    height: 100px;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0s ease, background-color 0s ease;
+    align-items: center;
+}
+
+#balloon:hover {
+    transform: scale(1.1);
+    background-color: #ff5252;
+}
