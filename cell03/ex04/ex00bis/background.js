@@ -1,4 +1,4 @@
-function getrandomcolor() {
+function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -7,8 +7,9 @@ function getrandomcolor() {
     return color;
 }
 
-const button = document.getElementById('changeColorButton');
-button.addEventListener('click', () => {
-    const randomColor = getrandomcolor();
-    document.body.style.backgroundColor = randomColor;
+$(document).ready(function () {
+    $('#changeColorButton').click(function () {
+        const randomColor = getRandomColor();
+        $('body').css('background-color', randomColor);
+    });
 });

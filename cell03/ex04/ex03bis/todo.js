@@ -1,6 +1,3 @@
-const list = document.getElementById("ft_list");
-const newButton = document.getElementById("new");
-
 function getCookie(name) {
   const cookie = document.cookie
     .split("; ")
@@ -33,13 +30,12 @@ function saveTodos() {
 }
 
 function showTodos() {
-  list.replaceChildren();
+  $('#ft_list').empty();
 
   todos.forEach((text, index) => {
-    const item = document.createElement("div");
-    item.textContent = text;
+    const item = $('<div></div>').text(text);
 
-    item.addEventListener("click", () => {
+    item.on('click', () => {
       if (confirm(`ต้องการลบ "${text}" หรือไม่?`)) {
         todos.splice(index, 1);
         saveTodos();
@@ -47,20 +43,22 @@ function showTodos() {
       }
     });
 
-    list.appendChild(item);
+    $('#ft_list').append(item);
   });
 }
 
-newButton.addEventListener("click", () => {
-  const answer = prompt("to do !!:");
+$(document).ready(function () {
+  $('#new').on('click', function () {
+    const answer = prompt('to do !!:');
 
-  if (answer === null || answer.trim() === "") {
-    return;
-  }
+    if (answer === null || answer.trim() === '') {
+      return;
+    }
 
-  todos.unshift(answer.trim());
-  saveTodos();
+    todos.unshift(answer.trim());
+    saveTodos();
+    showTodos();
+  });
+
   showTodos();
 });
-
-showTodos();

@@ -1,10 +1,4 @@
-const form = document.getElementById("calculator-form");
-const leftInput = document.getElementById("left");
-const rightInput = document.getElementById("right");
-const operatorSelect = document.getElementById("operator");
-
 function isValidNumber(value) {
- 
   if (!/^[0-9]+$/.test(value)) {
     return false;
   }
@@ -12,52 +6,57 @@ function isValidNumber(value) {
   return Number.isSafeInteger(Number(value));
 }
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
+$(document).ready(function () {
+  $('#calculator-form').on('submit', function (event) {
+    event.preventDefault();
 
-  const leftText = leftInput.value.trim();
-  const rightText = rightInput.value.trim();
+    const leftText = $('#left').val().trim();
+    const rightText = $('#right').val().trim();
+    const operator = $('#operator').val();
 
-  if (!isValidNumber(leftText) || !isValidNumber(rightText)) {
-    alert("Error :(");
-    return;
-  }
+    if (!isValidNumber(leftText) || !isValidNumber(rightText)) {
+      alert('Error :(');
+      return;
+    }
 
-  const left = Number(leftText);
-  const right = Number(rightText);
-  const operator = operatorSelect.value;
+    const left = Number(leftText);
+    const right = Number(rightText);
 
-  if ((operator === "/" || operator === "%") && right === 0) {
-    const message = "It's over 9000!";
-    alert(message);
-    console.log(message);
-    return;
-  }
+    if ((operator === '/' || operator === '%') && right === 0) {
+      const message = "It's over 9000!";
+      alert(message);
+      console.log(message);
+      return;
+    }
 
-  let result;
+    let result;
 
-  switch (operator) {
-    case "+":
-      result = left + right;
-      break;
-    case "-":
-      result = left - right;
-      break;
-    case "*":
-      result = left * right;
-      break;
-    case "/":
-      result = left / right;
-      break;
-    case "%":
-      result = left % right;
-      break;
-  }
+    switch (operator) {
+      case '+':
+        result = left + right;
+        break;
+      case '-':
+        result = left - right;
+        break;
+      case '*':
+        result = left * right;
+        break;
+      case '/':
+        result = left / right;
+        break;
+      case '%':
+        result = left % right;
+        break;
+      default:
+        alert('Error :(');
+        return;
+    }
 
-  alert(result);
-  console.log(result);
+    alert(result);
+    console.log(result);
+  });
+
+  setInterval(function () {
+    alert('Please, use me...');
+  }, 30000);
 });
-
-setInterval(function () {
-  alert("Please, use me...");
-}, 30000);
