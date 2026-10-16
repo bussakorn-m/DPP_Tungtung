@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CanRead25 - Cozy Study Space</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dayBg text-dayText dark:bg-nightBg dark:text-nightText min-h-screen">
+
+  <!-- Fixed Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all">
+    <div class="max-w-6xl mx-auto glass-card bg-dayCard/70 dark:bg-nightCard/70 border border-dayAccent/30 dark:border-nightAccent/30 rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg">
+      
+      <!-- App Name -->
+      <div class="flex items-center space-x-3">
+        <i class="fa-solid fa-book-openReader text-2xl text-amber-700 dark:text-purple-400"></i>
+        <span class="serif-title text-2xl font-bold tracking-wide">CanRead25</span>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="#hero" class="hover:text-amber-700 dark:hover:text-purple-300 transition">Read Now</a>
+        <a href="#relax" class="hover:text-amber-700 dark:hover:text-purple-300 transition">Little Relax</a>
+        <a href="#quote" class="hover:text-amber-700 dark:hover:text-purple-300 transition">Quote</a>
+        <a href="#team" class="hover:text-amber-700 dark:hover:text-purple-300 transition">Meet the Team</a>
+      </nav>
+
+      <!-- Day / Night & Login -->
+      <div class="flex items-center space-x-4">
+        <button id="themeToggle" class="p-2.5 rounded-xl bg-dayBg dark:bg-nightBg border border-dayAccent/40 dark:border-nightAccent/40 hover:scale-105 transition">
+          <i id="themeIcon" class="fa-solid fa-sun text-amber-600 dark:hidden"></i>
+          <i class="fa-solid fa-moon text-purple-300 hidden dark:block"></i>
+        </button>
+        <button id="openLoginBtn" class="px-5 py-2 rounded-xl bg-amber-800 text-white dark:bg-purple-600 hover:opacity-90 font-medium text-sm transition shadow-md">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt-32 pb-16 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Timer Box (25 min Standard Pomodoro) -->
+      <div class="lg:col-span-5 glass-card bg-dayCard/80 dark:bg-nightCard/80 p-8 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 shadow-xl text-center">
+        <div class="flex justify-center space-x-2 mb-6">
+          <button id="btn-25" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-amber-800 text-white dark:bg-purple-600 transition">25 Focus</button>
+          <button id="btn-5" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-dayBg dark:bg-nightBg hover:bg-amber-200 dark:hover:bg-purple-900 transition">5 Short</button>
+          <button id="btn-15" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-dayBg dark:bg-nightBg hover:bg-amber-200 dark:hover:bg-purple-900 transition">15 Long</button>
+        </div>
+
+        <!-- Digital Time Display -->
+        <div id="timerDisplay" class="text-6xl md:text-7xl font-mono font-bold tracking-wider my-4 text-amber-900 dark:text-purple-200">
+          25:00
+        </div>
+
+        <!-- Timer Controls -->
+        <div class="flex justify-center space-x-3 mt-6">
+          <button id="startTimerBtn" class="px-6 py-2.5 rounded-xl bg-amber-800 text-white dark:bg-purple-600 font-medium hover:scale-105 transition shadow">Start</button>
+          <button id="pauseTimerBtn" class="px-6 py-2.5 rounded-xl bg-dayBg dark:bg-nightBg border border-dayAccent/50 font-medium hover:scale-105 transition">Pause</button>
+          <button id="resetTimerBtn" class="px-6 py-2.5 rounded-xl bg-dayBg dark:bg-nightBg border border-dayAccent/50 font-medium hover:scale-105 transition">Reset</button>
+        </div>
+      </div>
+
+      <!-- Center Candle -->
+      <div class="lg:col-span-2 flex flex-col items-center justify-center my-6 lg:my-0">
+        <div class="relative flex flex-col items-center">
+          <div class="flame mb-1"></div>
+          <div class="w-2 h-4 bg-amber-950 rounded-t-sm"></div>
+          <!-- Candle Body -->
+          <div class="w-28 h-36 bg-gradient-to-b from-amber-100 to-amber-200 dark:from-purple-200 dark:to-purple-300 rounded-2xl shadow-2xl border-2 border-amber-300/50 flex flex-col items-center justify-center p-3 text-center">
+            <span class="text-xs font-serif text-amber-900 font-bold">Scented Candle</span>
+            <i class="fa-solid fa-spa text-amber-700/60 my-1 text-sm"></i>
+            <span class="text-[9px] text-amber-800/80">Cozy Vanilla</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cozy Coffee & Books Image -->
+      <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border-4 border-dayCard dark:border-nightCard group relative">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80" alt="Cozy Books & Coffee" class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+          <p class="text-white text-sm font-medium">✨ "A cup of coffee and a warm book is all you need."</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Media Controls Bar (Rain Sound Image & Reading Focus Image) -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Rain Sound Box -->
+      <div class="glass-card bg-dayCard/60 dark:bg-nightCard/60 p-5 rounded-2xl border border-dayAccent/30 dark:border-nightAccent/30">
+        <button id="toggleRainBtn" class="w-full flex justify-between items-center font-medium text-base">
+          <span class="flex items-center space-x-3">
+            <i class="fa-solid fa-cloud-showers-heavy text-amber-700 dark:text-purple-400"></i>
+            <span>Rain Sound</span>
+          </span>
+          <i class="fa-solid fa-chevron-down text-xs opacity-60"></i>
+        </button>
+        <div id="rainPlayer" class="hidden mt-4 transition-all">
+          <a href="https://www.youtube.com/watch?v=q76bMs-NwRk" target="_blank" class="block relative group overflow-hidden rounded-xl border border-amber-800/20 shadow-md">
+            <img src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?auto=format&fit=crop&w=800&q=80" alt="Rain Drops" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition flex items-center justify-center">
+              <span class="bg-amber-900/80 dark:bg-purple-900/80 text-white text-xs px-4 py-2 rounded-full font-medium flex items-center space-x-2 backdrop-blur-sm">
+                <i class="fa-solid fa-play"></i>
+                <span>Listen to Rain Sound on YouTube</span>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Deep Focus / Reading Box -->
+      <div class="glass-card bg-dayCard/60 dark:bg-nightCard/60 p-5 rounded-2xl border border-dayAccent/30 dark:border-nightAccent/30">
+        <button id="toggleSongBtn" class="w-full flex justify-between items-center font-medium text-base">
+          <span class="flex items-center space-x-3">
+            <i class="fa-solid fa-book-open text-amber-700 dark:text-purple-400"></i>
+            <span>Reading & Deep Focus</span>
+          </span>
+          <i class="fa-solid fa-chevron-down text-xs opacity-60"></i>
+        </button>
+        <div id="songPlayer" class="hidden mt-4 transition-all">
+          <a href="https://www.youtube.com/watch?v=WPni755-Krg" target="_blank" class="block relative group overflow-hidden rounded-xl border border-amber-800/20 shadow-md">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" alt="Reading Books" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition flex items-center justify-center">
+              <span class="bg-amber-900/80 dark:bg-purple-900/80 text-white text-xs px-4 py-2 rounded-full font-medium flex items-center space-x-2 backdrop-blur-sm">
+                <i class="fa-solid fa-play"></i>
+                <span>Watch Deep Focus Music on YouTube</span>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Little Relax Section -->
+  <section id="relax" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-8">
+      <h2 class="serif-title text-3xl font-bold mb-2">Little Relax ☕</h2>
+      <p class="text-xs opacity-75">Enjoy a short break to refresh your mind</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="https://youtu.be/p6GKKdwufOk?si=8ZMbuaXBUCXdptYD" target="_blank" class="glass-card bg-dayCard/50 dark:bg-nightCard/50 p-6 rounded-2xl border border-dayAccent/30 dark:border-nightAccent/30 hover:-translate-y-1.5 transition block shadow-md group">
+        <div class="text-4xl mb-4">🐱</div>
+        <h3 class="font-bold text-lg mb-2 group-hover:text-amber-700 dark:group-hover:text-purple-300">Funny Cat Video</h3>
+        <p class="text-xs opacity-75 mb-4">Take a cozy break with funny and wholesome cat moments.</p>
+        <span class="inline-flex items-center text-xs font-semibold text-amber-800 dark:text-purple-300">Watch Video <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></span>
+      </a>
+
+      <a href="https://youtu.be/0NcPkQsKZSQ?si=xVX_QYq6E6YlQEv2" target="_blank" class="glass-card bg-dayCard/50 dark:bg-nightCard/50 p-6 rounded-2xl border border-dayAccent/30 dark:border-nightAccent/30 hover:-translate-y-1.5 transition block shadow-md group">
+        <div class="text-4xl mb-4">😊</div>
+        <h3 class="font-bold text-lg mb-2 group-hover:text-amber-700 dark:group-hover:text-purple-300">Smile & Relax Meme</h3>
+        <p class="text-xs opacity-75 mb-4">Lighthearted memes designed to make you smile and de-stress.</p>
+        <span class="inline-flex items-center text-xs font-semibold text-amber-800 dark:text-purple-300">Watch Video <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></span>
+      </a>
+
+      <a href="https://youtu.be/r6zFZQm0hcc?si=0rWTeTK59dxJcMEi" target="_blank" class="glass-card bg-dayCard/50 dark:bg-nightCard/50 p-6 rounded-2xl border border-dayAccent/30 dark:border-nightAccent/30 hover:-translate-y-1.5 transition block shadow-md group">
+        <div class="text-4xl mb-4">🔥</div>
+        <h3 class="font-bold text-lg mb-2 group-hover:text-amber-700 dark:group-hover:text-purple-300">Motivation Video</h3>
+        <p class="text-xs opacity-75 mb-4">Inspiring words and powerful encouragement for your goals.</p>
+        <span class="inline-flex items-center text-xs font-semibold text-amber-800 dark:text-purple-300">Watch Video <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section id="quote" class="py-20 px-6 max-w-6xl mx-auto text-center">
+    <h2 class="serif-title text-3xl font-bold mb-10">Daily Quotes 💬</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card bg-dayCard/70 dark:bg-nightCard/70 p-8 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 shadow-xl flex flex-col justify-between">
+        <div>
+          <i class="fa-solid fa-quote-left text-3xl text-amber-700/30 dark:text-purple-400/30 mb-4"></i>
+          <blockquote class="serif-title text-lg italic mb-4">"Live as if you were to die tomorrow. Learn as if you were to live forever."</blockquote>
+        </div>
+        <p class="text-xs font-medium tracking-widest uppercase opacity-70">— Mahatma Gandhi</p>
+      </div>
+
+      <div class="glass-card bg-dayCard/70 dark:bg-nightCard/70 p-8 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 shadow-xl flex flex-col justify-between">
+        <div>
+          <i class="fa-solid fa-quote-left text-3xl text-amber-700/30 dark:text-purple-400/30 mb-4"></i>
+          <blockquote class="serif-title text-lg italic mb-4">"It always seems impossible until it's done."</blockquote>
+        </div>
+        <p class="text-xs font-medium tracking-widest uppercase opacity-70">— Nelson Mandela</p>
+      </div>
+
+      <div class="glass-card bg-dayCard/70 dark:bg-nightCard/70 p-8 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 shadow-xl flex flex-col justify-between">
+        <div>
+          <i class="fa-solid fa-quote-left text-3xl text-amber-700/30 dark:text-purple-400/30 mb-4"></i>
+          <blockquote class="serif-title text-lg italic mb-4">"The beautiful thing about learning is that no one can take it away from you."</blockquote>
+        </div>
+        <p class="text-xs font-medium tracking-widest uppercase opacity-70">— B.B. King</p>
+      </div>
+    </div>
+
+    <!-- Discord Community Banner -->
+    <div class="mt-12 glass-card bg-indigo-900/10 dark:bg-indigo-900/30 p-6 rounded-2xl border border-indigo-500/30 flex flex-col sm:flex-row justify-between items-center max-w-2xl mx-auto">
+      <div class="flex items-center space-x-4 mb-4 sm:mb-0">
+        <i class="fa-brands fa-discord text-4xl text-indigo-500"></i>
+        <div class="text-left">
+          <h4 class="font-bold text-base">Join Our Community</h4>
+          <p class="text-xs opacity-75">Connect with other readers and study together!</p>
+        </div>
+      </div>
+      <a href="https://discord.gg" target="_blank" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium text-xs hover:bg-indigo-700 transition">Join Discord</a>
+    </div>
+  </section>
+
+  <!-- Meet the Team Section -->
+  <section id="team" class="py-20 px-6 max-w-5xl mx-auto border-t border-dayAccent/20 dark:border-nightAccent/20">
+    <h2 class="serif-title text-3xl font-bold mb-10 text-center">Meet the Team 👥</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Developer 1: Rinrada -->
+      <div class="glass-card bg-dayCard/60 dark:bg-nightCard/60 p-6 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5 shadow-lg">
+        <img src="IMG_3961.jpg" alt="Rinrada Rasarak" class="w-24 h-24 rounded-2xl object-cover border-2 border-amber-800/30 shadow">
+        <div class="text-center sm:text-left">
+          <h3 class="font-bold text-lg">Rinrada Rasarak (Lukezo)</h3>
+          <p class="text-xs text-amber-800 dark:text-purple-300 font-medium mb-1">Student at KMITL</p>
+          <span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-800/10 text-amber-800 dark:bg-purple-900/30 dark:text-purple-300 text-[10px] font-bold mb-2">Web Developer</span>
+          
+          <div class="text-xs space-y-1 opacity-85">
+            <p><strong>Experience:</strong> Electrical Engineering</p>
+            <p><strong>Skills:</strong> HTML, CSS, Git</p>
+            <p><i class="fa-solid fa-envelope mr-1"></i> Lukezoja@gmail.com</p>
+            <p><i class="fa-brands fa-instagram mr-1"></i> rin_rada_r</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer 2: Bussakorn -->
+      <div class="glass-card bg-dayCard/60 dark:bg-nightCard/60 p-6 rounded-3xl border border-dayAccent/30 dark:border-nightAccent/30 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5 shadow-lg">
+        <img src="IMG_20260805151011752.jpeg" alt="Bussakorn Muangnum" class="w-24 h-24 rounded-2xl object-cover border-2 border-amber-800/30 shadow">
+        <div class="text-center sm:text-left">
+          <h3 class="font-bold text-lg">Bussakorn Muangnum (Bud)</h3>
+          <p class="text-xs text-amber-800 dark:text-purple-300 font-medium mb-1">Student at TUPP</p>
+          <span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-800/10 text-amber-800 dark:bg-purple-900/30 dark:text-purple-300 text-[10px] font-bold mb-2">Full-Stack Developer</span>
+          
+          <div class="text-xs space-y-1 opacity-85">
+            <p><strong>Experience:</strong> Basic Web Development</p>
+            <p><strong>Skills:</strong> HTML, CSS, Git</p>
+            <p><i class="fa-brands fa-discord mr-1"></i> db.pv</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Timer Completion Modal -->
+  <div id="congratsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-dayCard dark:bg-nightCard p-8 rounded-3xl max-w-md w-full border border-amber-500/50 text-center relative shadow-2xl">
+      <div class="text-5xl mb-4">🎉</div>
+      <h3 class="serif-title text-2xl font-bold mb-3 text-amber-900 dark:text-purple-200">Wow Congrats!</h3>
+      <p class="text-base font-medium mb-6">Already 25 minutes pass. Take a well-deserved break! ☕</p>
+      <button id="closeCongratsBtn" class="px-6 py-2.5 rounded-xl bg-amber-800 text-white dark:bg-purple-600 font-medium text-sm hover:scale-105 transition shadow-lg">
+        Awesome!
+      </button>
+    </div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-dayCard dark:bg-nightCard p-8 rounded-3xl max-w-md w-full border border-dayAccent/40 relative shadow-2xl">
+      <button id="closeLoginBtn" class="absolute top-4 right-4 text-sm opacity-60 hover:opacity-100"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <h3 class="serif-title text-2xl font-bold mb-6 text-center">Sign In to CanRead25</h3>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium mb-1">Username / Email</label>
+          <input type="text" class="w-full px-4 py-2.5 rounded-xl bg-dayBg dark:bg-nightBg border border-dayAccent/30 text-sm focus:outline-none focus:ring-2 focus:ring-amber-700" placeholder="Enter username">
+        </div>
+        <div>
+          <label class="block text-xs font-medium mb-1">Password</label>
+          <input type="password" class="w-full px-4 py-2.5 rounded-xl bg-dayBg dark:bg-nightBg border border-dayAccent/30 text-sm focus:outline-none focus:ring-2 focus:ring-amber-700" placeholder="••••••••">
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-amber-800 text-white dark:bg-purple-600 font-medium text-sm hover:opacity-90 transition mt-2">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
